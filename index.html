@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChanDo Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background-color: #1a1a1a;
+            min-height: 100vh;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background-color: white;
+            color: #1a1a1a;
+        }
+        .header h1 {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin: 0;
+        }
+        .header i {
+            color: #1a1a1a;
+            font-size: 1.25rem;
+        }
+        .profile-section {
+            position: relative;
+            background-color: #1a1a1a;
+            padding: 20px;
+            text-align: center;
+        }
+        .profile-background {
+            position: absolute;
+            inset: 0;
+            top: 0;
+            height: 120px;
+            background-color: white;
+            border-bottom-left-radius: 100px;
+            border-bottom-right-radius: 100px;
+        }
+        .profile-icon {
+            width: 100px;
+            height: 100px;
+            background-color: #666;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin: 60px auto 20px;
+            color: white;
+            position: relative;
+        }
+        .level-button {
+            margin-top: 16px;
+            background-color: #00b4d8;
+            color: white;
+            border-radius: 9999px;
+            padding: 8px 25px;
+            text-align: center;
+            display: inline-flex;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 1rem;
+            width: 35%;
+            height: 30px;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .achievements {
+            background-color: #1a1a1a;
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .habits {
+            margin: 16px;
+            background-color: #353131;
+            border-radius: 12px;
+            padding: 15px;
+        }
+        .habits a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1a1a1a;
+            color: white;
+            border-radius: 12px;
+            padding: 16px;
+            text-decoration: none;
+            width: 89%;
+            font-size: 0.95rem;
+            margin-bottom: 22px;
+            margin-right: -20px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background-color: #2a2a2a;
+            border-radius: 16px;
+            padding: 24px;
+            max-width: 300px;
+            width: 100%;
+            color: white;
+        }
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            cursor: pointer;
+            margin: 0 auto;
+            display: block;
+        }
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 22px;
+            text-align: center;
+            color: white;
+        }
+        .badge {
+            color: white;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+        .badge-green {
+            color: #00ff5e;
+        }
+        .badge-red {
+            color: #ff0000;
+        }
+        select {
+            background-color: #2a2a2a;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+        .achievements-counter {
+            display: inline-flex;
+            align-items: center;
+            color: rgb(0, 0, 0);
+            font-size: 0.9rem;
+            font-weight: 500;
+            background-color: #ffffff;
+            padding: 12px 15px 12px 25px;
+            border-radius: 20px;
+            position: relative;
+            padding-right: 30px;
+        }
+        .achievements-counter::after {
+            content: '';
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid white;
+        }
+        .star-counter {
+            display: inline-flex;
+            align-items: center;
+            color: rgb(0, 0, 0);
+            font-weight: 500;
+            background-color: #ffffff;
+            padding: 11px 16px;
+            border-radius: 20px;
+        }
+        .star-counter i {
+            color: #00b4d8;
+            margin-right: 8px;
+        }
+        #avatars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            justify-items: center;
+            padding: 0 20px;
+            margin-right: 20px;
+        }
+        .achievements{
+            margin: 15px;
+            margin-top: -1px;
+            margin-bottom: 25px;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 60px;
+            right: 16px;
+            background-color: #353131;
+            border-radius: 12px;
+            padding: 8px 0;
+            min-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        .dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: background-color 0.2s ease;
+        }
+        .dropdown-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .dropdown-menu i {
+            margin-right: 12px;
+            font-size: 1.1rem;
+            width: 20px;
+            color: #00b4d8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <a href="/" style="color: inherit; text-decoration: none;">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>Пользователь</h1>
+            <i class="fas fa-ellipsis-v" id="menu-toggle"></i>
+            <div class="dropdown-menu" id="dropdown-menu">
+                <a href="achievements.html"><i class="fas fa-trophy"></i>Достижения</a>
+                <a href="settings.html"><i class="fas fa-cog"></i>Настройки</a>
+                <a href="logout.html"><i class="fas fa-sign-out-alt"></i>Выйти</a>
+            </div>
+        </div>
+        
+        <!-- Profile Section -->
+        <div class="profile-section">
+            <div class="profile-background"></div>
+            <div class="profile-icon" id="profile-icon">П</div>
+            <a href="level.html" class="level-button">
+                <span>5</span>
+                <span>Уровень</span>
+            </a>
+            <p style="color: #666; margin-top: 8px;">В ChanDo с <span style="color: #00b4d8;">января 2025</span></p>
+        </div>
+        
+        <!-- Achievements Section -->
+        <div class="achievements">
+            <div class="achievements-counter">
+                Достижения 12/50
+            </div>
+            <div class="star-counter">
+                <i class="fas fa-star"></i>
+                350
+            </div>
+        </div>
+        
+        <!-- Habits Section -->
+        <div class="habits">
+            <a href="good-habits.html">
+                <span>Вредные привычки, с которыми Вы справились</span>
+                <div style="display: flex; align-items: center;">
+                    <span class="badge badge-green">1</span>
+                    <i class="fas fa-chevron-right" style="margin-left: 8px;"></i>
+                </div>
+            </a>
+            <a href="bad-habits.html">
+                <span>Текущие вредные привычки</span>
+                <div style="display: flex; align-items: center;">
+                    <span class="badge badge-red">2</span>
+                    <i class="fas fa-chevron-right" style="margin-left: 8px;"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Modal for Avatar Selection -->
+    <div id="avatar-modal" class="modal">
+        <div class="modal-content">
+            <h2 class="section-title">Выберите аватарку</h2>
+            <div id="avatars-grid" class="grid grid-cols-3 gap-4">
+            </div>
+            <button class="level-button w-full mt-4" onclick="closeModal()">Закрыть</button>
+        </div>
+    </div>
+    
+    <script>
+        const profileIcon = document.getElementById('profile-icon');
+        const avatarModal = document.getElementById('avatar-modal');
+        const avatarsGrid = document.getElementById('avatars-grid');
+
+        // Массив путей к аватаркам
+        const avatarImages = [
+            'images/avatar1.png',
+            'images/avatar2.png',
+            'images/avatar3.png',
+            'images/avatar4.png',
+            'images/avatar5.png',
+            'images/avatar6.png'
+        ];
+
+        // Создаем аватарки
+        function createAvatars() {
+            for (let i = 0; i < 6; i++) {
+                const avatar = document.createElement('img');
+                avatar.className = 'avatar';
+                avatar.src = avatarImages[i];
+                avatar.alt = `Avatar ${i + 1}`;
+                avatar.onclick = () => selectAvatar(avatar, i);
+                avatarsGrid.appendChild(avatar);
+            }
+        }
+
+        // Функция выбора аватарки
+        function selectAvatar(element, index) {
+            profileIcon.innerHTML = `<img src="${avatarImages[index]}" alt="Selected Avatar" style="width: 100%; height: 100%; border-radius: 50%;">`;
+            closeModal();
+        }
+
+        profileIcon.addEventListener('click', () => {
+            avatarModal.classList.add('active');
+        });
+
+        function closeModal() {
+            avatarModal.classList.remove('active');
+        }
+
+        // Создаем аватарки при загрузке страницы
+        createAvatars();
+
+        // Добавляем обработчик для выпадающего меню
+        const menuToggle = document.getElementById('menu-toggle');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        let isMenuOpen = false;
+
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            isMenuOpen = !isMenuOpen;
+            dropdownMenu.classList.toggle('active');
+        });
+
+        // Закрываем меню при клике вне его
+        document.addEventListener('click', (e) => {
+            if (isMenuOpen && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove('active');
+                isMenuOpen = false;
+            }
+        });
+    </script>
+</body>
+</html>

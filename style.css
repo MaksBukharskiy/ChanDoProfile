@@ -101,7 +101,7 @@ body {
     padding: 16px;
     text-decoration: none;
     width: 89%;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     margin-bottom: 22px;
     margin-right: -20px;
 }
@@ -194,8 +194,9 @@ select {
     border-radius: 20px;
 }
 .star-counter i {
-    color: #00b4d8;
+    color: #00aaff;
     margin-right: 8px;
+    margin-top: -2px;
 }
 #avatars-grid {
     display: grid;

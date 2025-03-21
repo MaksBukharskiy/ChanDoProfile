@@ -27,7 +27,7 @@
         <div class="profile-section">
             <div class="profile-background"></div>
             <div class="profile-icon" id="profile-icon">П</div>
-            <a href="level.html" class="level-button">
+            <a href="#" class="level-button" onclick="openModal()">
                 <span>5</span>
                 <span>Уровень</span>
             </a>
@@ -69,7 +69,7 @@
             <h2 class="section-title">Выберите аватарку</h2>
             <div id="avatars-grid" class="grid grid-cols-3 gap-4">
             </div>
-            <button class="level-button w-full mt-4" onclick="closeModal()">Закрыть</button>
+            <a href="#" class="level-button w-full mt-4 close-button" onclick="closeModal()" style="text-decoration: none; text-align: center; display: block; margin: 0 auto;">Закрыть</a>
         </div>
     </div>
     <script src="./profile.js"></script>

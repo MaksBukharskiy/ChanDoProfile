@@ -19,6 +19,7 @@ body {
     padding: 16px;
     background-color: white;
     color: #1a1a1a;
+    position: relative;
 }
 .header h1 {
     font-size: 1.5rem;
@@ -64,7 +65,7 @@ body {
     background-color: #00b4d8;
     color: white;
     border-radius: 9999px;
-    padding: 8px 25px;
+    padding: 7px 20px;
     text-align: center;
     display: inline-flex;
     font-weight: 500;
@@ -213,7 +214,7 @@ select {
 }
 .dropdown-menu {
     position: absolute;
-    top: 60px;
+    top: 100%;
     right: 16px;
     background-color: #353131;
     border-radius: 12px;
@@ -247,4 +248,11 @@ select {
     font-size: 1.1rem;
     width: 20px;
     color: #00b4d8;
+}
+
+.close-button {
+    width: 100px !important;
+    margin: 20px auto 0 !important;
+    display: block !important;
+    align-items: center;
 }

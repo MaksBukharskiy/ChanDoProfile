@@ -38,6 +38,10 @@ function closeModal() {
   avatarModal.classList.remove("active");
 }
 
+function openModal() {
+  avatarModal.classList.add("active");
+}
+
 // Создаем аватарки при загрузке страницы
 createAvatars();
 

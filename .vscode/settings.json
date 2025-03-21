@@ -1,0 +1,24 @@
+{
+    "liveServer.settings.useWebExt": true,
+    "liveServer.settings.fullReload": true,
+    "liveServer.settings.wait": 0,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "liveServer.settings.donotVerifyTags": true,
+    "liveServer.settings.ignoreFiles": [
+        ".vscode/**"
+    ],
+    "liveServer.settings.host": "localhost",
+    "liveServer.settings.port": 5500,
+    "liveServer.settings.root": "/",
+    "liveServer.settings.ChromeDebuggingAttachment": false,
+    "liveServer.settings.https": false,
+    "liveServer.settings.file": "",
+    "liveServer.settings.mount": [],
+    "liveServer.settings.proxy": {
+        "enable": false,
+        "baseUri": "/",
+        "proxyUri": "http://localhost:3000"
+    },
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000
+} 
